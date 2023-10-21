@@ -1,0 +1,58 @@
+type Query {
+    info: String!
+    report(filter: String, orderBy: reportOrderByInput, filterDate: reportFilterByDate): [Report!]!
+}
+
+type Report {
+    id: ID!
+    name: String!
+    createdAt: DateTime!
+    injuryDate: DateTime!
+    postedById: String!
+    postedBy: User!
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    reports: [Report!]!
+}
+
+type Mutation {
+    login(email: String!, password: String!): AuthPayLoad
+    signup(email: String!, password: String!, name: String!): AuthPayLoad
+    addReport(name: String!, createdAt: DateTime, injuryDate: DateTime): Report
+    updateReport(name: String, createdAt: DateTime, injuryDate: DateTime, reportId: String!): Report
+    deleteReport(reportId: String!): Report
+}
+
+type AuthPayLoad {
+    token: String
+    user: User
+}
+
+input reportOrderByInput {
+    createdAt: Sort
+    injuryDate: Sort
+    name: Sort
+}
+
+input reportFilterByDate {
+    startDate: String
+    endDate: String
+    cat: DateCateogry
+}
+
+enum DateCateogry {
+    createdAt
+    injuryDate
+}
+
+enum Sort {
+    asc
+    desc
+}
+
+scalar DateTime
+
