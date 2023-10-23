@@ -23,7 +23,7 @@ type Mutation {
     login(email: String!, password: String!): AuthPayLoad
     signup(email: String!, password: String!, name: String!): AuthPayLoad
     addReport(name: String!, createdAt: DateTime, injuryDate: DateTime): Report
-    updateReport(name: String, createdAt: DateTime, injuryDate: DateTime, reportId: String!): Report
+    updateReport(name: String, createdAt: String, injuryDate: String, reportId: String!): Report
     deleteReport(reportId: String!): Report
 }
 

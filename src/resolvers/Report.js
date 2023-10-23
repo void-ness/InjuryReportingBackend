@@ -1,14 +1,12 @@
 const postedBy = (parent, args, context) => {
-    console.log(parent.id);
-
-    const result = context.prisma.report.findUnique({
+    const result = context.prisma.user.findUnique({
         where: {
-            id: parent.id
+            id: parent.postedById
         }
     })
 
 
-    return result.postedBy();
+    return result;
 }
 
 module.exports = {
